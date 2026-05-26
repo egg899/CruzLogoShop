@@ -70,7 +70,17 @@ useEffect(() => {
     console.log("Cart del useEffect de Cart.jsx: ", cart);
 }, [cart]);
 
+    const itemTotal = itemInCart?.price * itemInCart?.quantity;
+    const total = cart.reduce(
+        (acc, item) => {
+           return acc + (item.price * item.quantity)
+        }, 0
+    );
+
+
+
     return (
+        <div>
         <div className="d-flex gap-2">
 
             <button className={classes} onClick={() =>addToCart(product)}>
@@ -80,17 +90,21 @@ useEffect(() => {
                 <div className="d-flex align-items-center fw-bold text-dark  "> {itemInCart.quantity}</div>
             )}
           {cart.find(item=>item.id === product.id)?.quantity > 0 && (
-
+            
              <button className={classesb} onClick={() => removeFromCart(product.id)}> 
             {textb} </button>
-          )}
 
+          )}
+                
           
           
         </div>
         
-            
-       
+            {itemInCart?.quantity >= 0 && (
+                <div className="fw-bold text-dark mt-2"> Subtotal: ${itemTotal}</div>
+            )}
+
+       </div>
     );
 
 }//Cart
