@@ -5,11 +5,11 @@ import {useState, useEffect} from 'react';
 import axios from 'axios';
 import Cart from '../components/Cart';
 
-const Products =   () => {
+const Products = ({cart, setCart}) => {
 
 
 const [prod, setProd] = useState([]);
-const [cart, setCart] = useState([]);
+//const [cart, setCart] = useState([]);
 
  const fetchData = async() => {
             try{
@@ -40,7 +40,7 @@ const [cart, setCart] = useState([]);
                     prod.map(product => {
 
                         const {
-                            id,
+                            _id,
                             name,
                             price,
                             images
@@ -49,7 +49,7 @@ const [cart, setCart] = useState([]);
                         return (
                             <div
                                 className="col col-lg-5 col-md-4 col-lg-3"
-                                key={id}
+                                key={_id}
                             >
 
                                 <div className="card h-100">
@@ -73,7 +73,7 @@ const [cart, setCart] = useState([]);
                                         <div className="mt-auto d-flex flex-column gap-2">
 
                                             <Link
-                                                to={`/producto/${id}`}
+                                                to={`/producto/${_id}`}
                                                 className="w-100"
                                             >
                                                 <button

@@ -6,17 +6,17 @@ const Cart = ({ product, text, textb, classes, classesb, cart, setCart }) => {
     // const [cart, setCart] = useState([]);
 
 
-    const itemInCart = cart.find(item => item.id === product.id);
+    const itemInCart = cart.find(item => item._id === product._id);
     const addToCart = (product) => {
 
     
 
 
-    const existingProduct = cart.find(item => item.id === product.id);
+    const existingProduct = cart.find(item => item._id === product._id);
 
     if(existingProduct) {
 
-        const updatedCart = cart.map(item => item.id === product.id ? 
+        const updatedCart = cart.map(item => item._id === product._id ? 
             {...item, quantity:item.quantity+1}:item);
 
             setCart(updatedCart);
@@ -43,13 +43,13 @@ const Cart = ({ product, text, textb, classes, classesb, cart, setCart }) => {
 const removeFromCart = (productId) => {
 
     const existingProduct = cart.find(
-        item => item.id === productId
+        item => item._id === productId
     );
 
     if(!existingProduct) return;
 
     if(existingProduct.quantity === 1) {
-       const updatedCart = cart.filter( item => item.id !== productId );
+       const updatedCart = cart.filter( item => item._id !== productId );
 
         setCart(updatedCart);
 
@@ -58,7 +58,7 @@ const removeFromCart = (productId) => {
     }//existingProduct.quantity === 1
 
     const updatedCart = cart.map(item => 
-        item.id === productId
+        item._id === productId
             ? {...item, quantity: item.quantity - 1}:item
 
     );
@@ -89,9 +89,9 @@ useEffect(() => {
             {itemInCart?.quantity >= 0 && (
                 <div className="d-flex align-items-center fw-bold text-dark  "> {itemInCart.quantity}</div>
             )}
-          {cart.find(item=>item.id === product.id)?.quantity > 0 && (
+          {cart.find(item=>item._id === product._id)?.quantity > 0 && (
             
-             <button className={classesb} onClick={() => removeFromCart(product.id)}> 
+             <button className={classesb} onClick={() => removeFromCart(product._id)}> 
             {textb} </button>
 
           )}

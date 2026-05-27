@@ -1,22 +1,51 @@
-import {useState} from 'react';
-import { useParams } from "react-router-dom";
+import {useState, useEffect} from 'react';
+import { useParams, useNavigate } from "react-router-dom";
 import { getProducts } from "../services/api";
-import { useNavigate } from "react-router-dom";
 import {ProductCarousel} from "../components/productCarousel.jsx";
 import Cart from "../components/Cart.jsx";
-const ProductDetail = () => {
+const ProductDetail = ({ cart, setCart }) => {
 
     const navigate = useNavigate();
 
     const { id } = useParams();
 
-    const products = getProducts();
+    //const products = getProducts();
 
-    const product = products.find(
-        product => product.id === Number(id)
-    );
+    // const product = products.find(
+    //     product => product.id === id
+    // );
 
-    const [cart, setCart] = useState([]);
+    const [product, setProduct] = useState(null);
+    //const [cart, setCart] = useState([]);
+    
+
+    useEffect(() => {
+
+        const fetchProduct = async() => {
+
+           try {
+             const products = await getProducts();
+
+            const foundProduct = products.find(
+                product => product._id === id
+            );
+
+            setProduct(foundProduct);
+           } catch(error) {
+            console.log(error);
+           }
+
+
+        };//fetchProduct
+
+        fetchProduct();
+
+    }, [id]);//useEffect
+
+        if (!product) {
+                return <h2>Cargando...</h2>;
+            }//if !product
+
 
     return (
 
@@ -35,11 +64,7 @@ const ProductDetail = () => {
 
                     <div className="col-lg-6">
 
-                        {/* <img
-                            src={product.images[0]}
-                            alt={product.name}
-                            className="img-fluid rounded-4 shadow"
-                        /> */}
+                       
                         <ProductCarousel images={product.images}/>
                     </div>
 
