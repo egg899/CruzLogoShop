@@ -1,4 +1,4 @@
-import './CartModal.css';
+import './styles/CartModal.css';
 
 import { CartItems } from '../pages/CartItems';
 

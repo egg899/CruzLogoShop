@@ -3,7 +3,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { connectDB } from "./db.js";
 import salesRoutes from "./routes/sales.js";
-import productRotes from "./routes/products.js";
+import productRoutes from "./routes/products.js";
+import authRoutes from "./routes/authRoutes.js";
 
 dotenv.config();
 
@@ -21,8 +22,9 @@ app.get("/", (req, res) =>{
 
 
 
-app.use("/products", productRotes);
+app.use("/products", productRoutes);
 app.use("/sales", salesRoutes);
+app.use("/auth", authRoutes);
 
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http:localhost:${PORT}`);

@@ -14,7 +14,20 @@ const NavBar = ({cart, showCart, setShowCart}) => {
 
       <div className="container-fluid">
 
-        <h2 className="logo">Mi Shop</h2>
+        {/* <h2 className="logo">
+          Mi Logo
+        </h2> */}
+
+                <Link
+            to="/"
+            className="navbar-brand logo"
+        >
+            <img
+                src="/images/Cruz Logo.jpg"
+                alt="Moon Bags Logo"
+                height="70"
+            />
+        </Link>
 
         <button
           className="navbar-toggler"

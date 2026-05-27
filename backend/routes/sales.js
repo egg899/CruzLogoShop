@@ -1,9 +1,10 @@
 import express from "express";
 import { createSale } from "../controllers/salesController.js";
+import authMiddleware from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
 
-router.post("/", createSale);
+router.post("/", authMiddleware, createSale);
 
 export default router;
