@@ -17,9 +17,9 @@ const AppRoutes = ({ cart, setCart }) => {
 
             </Route>
 
-             <Route path="/carrito" element={<CartItems cart={cart} setCart={setCart}/>}>
+             {/* <Route path="/carrito" element={<CartItems cart={cart} setCart={setCart}/>}>
 
-            </Route>
+            </Route> */}
 
 
              <Route path="/producto/:id" element={<ProductDetail cart={cart} setCart={setCart}/>}>
