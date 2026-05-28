@@ -16,16 +16,15 @@ app.use(cors());
 app.use(express.json());
 
 connectDB();
+
 app.get("/", (req, res) =>{
-    res.send("<h1>Inicio del Servidor para el Bolso Moon</h2>")
+    res.send("<h1>Inicio del Servidor para el Bolso Moon</h1>");
 });
-
-
 
 app.use("/products", productRoutes);
 app.use("/sales", salesRoutes);
 app.use("/auth", authRoutes);
 
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http:localhost:${PORT}`);
+    console.log(`Servidor corriendo en puerto ${PORT}`);
 });
