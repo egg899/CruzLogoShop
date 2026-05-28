@@ -70,7 +70,11 @@ const NavBar = ({
 
           {cart.length > 0 && (
             <span className="position-absolute top-0 start-100 translate-middle badge bg-danger">
-              {cart.length}
+              {/* {cart.length} */}
+              {cart.reduce(
+        (acc, item) => acc + item.quantity,
+        0
+    )}
             </span>
           )}
         </button>
