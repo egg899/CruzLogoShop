@@ -15,7 +15,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-connectDB();
+//connectDB();
 
 app.get("/", (req, res) =>{
     res.send("<h1>Inicio del Servidor para el Bolso Moon</h1>");

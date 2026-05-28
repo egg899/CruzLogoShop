@@ -48,10 +48,17 @@ function App() {
   // console.log('App cart: ',cart);
   return (
     <>
-      <NavBar cart={cart}  setShowCart={setShowCart} setShowLogin={setShowLogin} 
-      user={user} setUser={setUser} showLogin={showLogin} logout={logout} setShowRegister= {setShowRegister}
+      <NavBar cart={cart}  
+              setShowCart={setShowCart} 
+              setShowLogin={setShowLogin} 
+              user={user} 
+              setUser={setUser} 
+              showLogin={showLogin} 
+              logout={logout} 
+              setShowRegister= {setShowRegister}
 />
       <AppRoutes cart={cart} setCart={setCart}/>
+
       <CartModal
         showCart={showCart}
         setShowCart={setShowCart}
