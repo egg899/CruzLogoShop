@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 
-const LoginModal = ({showLogin, setShowLogin, setUser }) => {
+const LoginModal = ({showLogin, setShowLogin, setUser, setShowRegister }) => {
 
 
     const [formData, setFormData] = useState({
@@ -86,7 +86,7 @@ const LoginModal = ({showLogin, setShowLogin, setUser }) => {
                         <div className="mb-3">
 
                             <label className="form-label">
-                                Email
+                                Correo Electrónico
                             </label>
 
                             <input
@@ -110,7 +110,7 @@ const LoginModal = ({showLogin, setShowLogin, setUser }) => {
                         <div className="mb-4">
 
                             <label className="form-label">
-                                Password
+                                Contraseña
                             </label>
 
                             <input
@@ -139,10 +139,21 @@ const LoginModal = ({showLogin, setShowLogin, setUser }) => {
 
                         >
 
-                            Login
+                            Iniciar Sesión
 
                         </button>
-
+                        <p className="text-center mt-3 mb-0">
+                                ¿No tenés cuenta?{" "}
+                                <span
+                                    style={{ cursor: "pointer", color: "#0d6efd" }}
+                                    onClick={() => {
+                                        setShowLogin(false);
+                                        setShowRegister(true);
+                                    }}
+                                >
+                                    Registrate
+                                </span>
+</p>
                     </form>
                     
                     

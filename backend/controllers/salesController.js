@@ -35,4 +35,4 @@ export const createSale = async(req, res) => {
         });
     }
 
-};//creaateSale
+};//createSale

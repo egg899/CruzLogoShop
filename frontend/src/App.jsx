@@ -8,12 +8,14 @@ import { getProfile } from './services/api';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import RegisterModal from './components/RegisterModal';
 
 function App() {
   // const [count, setCount] = useState(0)
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
   const [user, setUser] = useState(null);
 
   const logout = () => {
@@ -47,7 +49,7 @@ function App() {
   return (
     <>
       <NavBar cart={cart}  setShowCart={setShowCart} setShowLogin={setShowLogin} 
-      user={user} setUser={setUser} showLogin={showLogin} logout={logout}
+      user={user} setUser={setUser} showLogin={showLogin} logout={logout} setShowRegister= {setShowRegister}
 />
       <AppRoutes cart={cart} setCart={setCart}/>
       <CartModal
@@ -62,9 +64,15 @@ function App() {
       <LoginModal 
         showLogin={showLogin}
         setShowLogin={setShowLogin}
+        setShowRegister={setShowRegister}
         setUser={setUser}
       />
 
+    <RegisterModal 
+      showRegister={showRegister}
+      setShowRegister={setShowRegister}
+      setShowLogin={setShowLogin}
+    />
 
     </>
   )

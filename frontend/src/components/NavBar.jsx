@@ -5,6 +5,8 @@ const NavBar = ({
   showCart,
   setShowCart,
   setShowLogin,
+  showRegister,
+  setShowRegister,
   user,
   logout
 }) => {
@@ -44,7 +46,7 @@ const NavBar = ({
         <NavLink
           to="/"
           className={({ isActive }) =>
-            `nav-link text-white ${isActive ? "fw-bold" : ""}`
+            `nav-link text-white ${isActive ? "fw-bold active" : ""}`
           }
         >
           Home
@@ -53,7 +55,7 @@ const NavBar = ({
         <NavLink
           to="/producto"
           className={({ isActive }) =>
-            `nav-link text-white ${isActive ? "fw-bold" : ""}`
+            `nav-link text-white ${isActive ? "fw-bold active" : ""}`
           }
         >
           Productos
@@ -94,10 +96,16 @@ const NavBar = ({
             >
               Logout
             </button>
-
+          
           </div>
         )}
 
+       <button
+              className="btn btn-light"
+              onClick={() => setShowRegister(true)}
+            >
+              Register
+            </button>
       </div>
 
     </div>
