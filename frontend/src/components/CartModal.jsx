@@ -6,7 +6,9 @@ const CartModal = ({
     showCart,
     setShowCart,
     cart,
-    setCart
+    setCart,
+    showLogin,
+    setShowLogin
 }) => {
 
     return (
@@ -37,6 +39,8 @@ const CartModal = ({
                     <CartItems
                         cart={cart}
                         setCart={setCart}
+                        showLogin={showLogin}
+                        setShowLogin={setShowLogin}
                     />
 
                 </div>

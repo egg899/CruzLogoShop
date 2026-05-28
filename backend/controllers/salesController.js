@@ -15,6 +15,7 @@ export const createSale = async(req, res) => {
         }));
 
         const sale = new Sale({
+            user: req.user.id,
             items: cleanItems,
             total
         });

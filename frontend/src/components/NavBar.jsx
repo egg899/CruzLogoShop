@@ -1,98 +1,109 @@
 import { Link, NavLink } from "react-router-dom";
 
-const NavBar = ({cart, showCart, setShowCart}) => {
+const NavBar = ({
+  cart,
+  showCart,
+  setShowCart,
+  setShowLogin,
+  user,
+  logout
+}) => {
 
-  const clickHandle = () => {
-    let boolean = showCart;
-    setShowCart(boolean => !boolean);
-
-    
-  }
+  const clickHandleCart = () => {
+    setShowCart(prev => !prev);
+  };
 
   return (
     <nav className="navBar navbar navbar-expand-lg navbar-dark">
 
-      <div className="container-fluid">
+  <div className="container-fluid">
 
-        {/* <h2 className="logo">
-          Mi Logo
-        </h2> */}
+    {/* BRAND (IZQUIERDA) */}
+    <Link to="/" className="navbar-brand d-flex align-items-center">
+      <img
+        src="/images/Cruz Logo.jpg"
+        alt="Logo"
+        height="60"
+      />
+    </Link>
 
-                <Link
-            to="/"
-            className="navbar-brand logo"
+    <button
+      className="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+    >
+      <span className="navbar-toggler-icon"></span>
+    </button>
+
+    <div className="collapse navbar-collapse" id="navbarNav">
+
+      <div className="ms-auto d-flex align-items-center gap-4">
+
+        {/* LINKS */}
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `nav-link text-white ${isActive ? "fw-bold" : ""}`
+          }
         >
-            <img
-                src="/images/Cruz Logo.jpg"
-                alt="Moon Bags Logo"
-                height="70"
-            />
-        </Link>
+          Home
+        </NavLink>
 
+        <NavLink
+          to="/producto"
+          className={({ isActive }) =>
+            `nav-link text-white ${isActive ? "fw-bold" : ""}`
+          }
+        >
+          Productos
+        </NavLink>
+
+        {/* CARRITO */}
         <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+          className="btn btn-outline-light position-relative"
+          onClick={clickHandleCart}
         >
-          <span className="navbar-toggler-icon"></span>
+          Carrito 🛒
+
+          {cart.length > 0 && (
+            <span className="position-absolute top-0 start-100 translate-middle badge bg-danger">
+              {cart.length}
+            </span>
+          )}
         </button>
 
-        <div
-          className="collapse navbar-collapse"
-          id="navbarNav"
-        >
-          <div className="nav-links ms-auto">
+        {/* USER / LOGIN */}
+        {!user ? (
+          <button
+            className="btn btn-light"
+            onClick={() => setShowLogin(true)}
+          >
+            Login
+          </button>
+        ) : (
+          <div className="d-flex align-items-center gap-2">
 
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive ? "active" : ""
-              }
-            >
-              Home
-            </NavLink>
-
-            <NavLink
-              to="/producto"
-              className={({ isActive }) =>
-                isActive ? "active" : ""
-              }
-            >
-              Producto
-            </NavLink>
-
-            {/* <NavLink
-              to="/carrito"
-              className={({ isActive }) =>
-                isActive ? "active" : ""
-              }
-            >
-              🛒 Carrito
-            </NavLink> */}
-
-            <button className="btn btn-outline-light w-100 position-relative" style={{ borderWidth: "2px" }} 
-            onClick={clickHandle}> 
-              
-              🛒 Carrito
-              
-              {
-        cart.length > 0 && (
-            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                {cart.length}
+            <span className="badge bg-dark px-3 py-2">
+              👤 {user.username}
             </span>
-        )}
-              
-              </button>
-          {console.log("Mostrando el booleano del navBar: ", showCart)}
+
+            <button
+              className="btn btn-outline-danger btn-sm"
+              onClick={logout}
+            >
+              Logout
+            </button>
+
           </div>
-        </div>
+        )}
 
       </div>
-    </nav>
+
+    </div>
+
+  </div>
+</nav>
   );
 };
 

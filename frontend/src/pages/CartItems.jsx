@@ -1,6 +1,8 @@
 import { createSale } from "../services/api";
+import { useState } from "react";
+const CartItems = ({ cart, setCart, setShowLogin }) => {
 
-const CartItems = ({ cart, setCart }) => {
+    const [error, setError] = useState("");
 
     const total = cart.reduce(
         (acc, item) => acc + item.price * item.quantity,
@@ -71,8 +73,10 @@ const CartItems = ({ cart, setCart }) => {
     const handleBuy = async () => {
 
         if(cart.length === 0) return;
-
-        const confirmed = window.confirm(
+        setError(""); // limpiamos error previo
+        
+        try {
+            const confirmed = window.confirm(
             "¿Deseas finalizar la compra?"
         );
 
@@ -86,6 +90,19 @@ const CartItems = ({ cart, setCart }) => {
         alert("Compra realizada con éxito");
 
         setCart([]);
+        }
+
+        catch(error){
+            if (error.response?.status === 401) {
+            alert("Tenés que iniciar sesión para comprar");
+            setShowLogin(true); // opcional UX pro
+            setError("Tenés que iniciar sesión para comprar");
+            return;
+        }
+
+        alert("Error al realizar la compra");
+        setError("Error al procesar la compra");
+        }
 
     };
 
@@ -94,9 +111,12 @@ const CartItems = ({ cart, setCart }) => {
         <div className="container mt-5">
 
             <h1 className="mb-4">
-                Cart
+                Carrito
             </h1>
-
+            {error && (
+    <div className="alert alert-danger text-center">
+        {error}
+    </div>)}
             {cart.length > 0 ? (
 
                 <>

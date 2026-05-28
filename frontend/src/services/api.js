@@ -24,9 +24,17 @@ export const getProducts = async () => {
 
 export const createSale = async (data) => {
 
+    const  token = localStorage.getItem("token");
+
+
     const response = await axios.post(
         `${API_URL}/sales`,
-        data
+        data,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
     );
 
     return response.data;
@@ -36,5 +44,23 @@ export const createSale = async (data) => {
 };//createSale
 
 
+export const getProfile = async () => {
+    const token = localStorage.getItem("token");
 
+    if(!token) return null;
+
+    const response = await axios.get(
+         `${API_URL}/auth/perfil`,
+         {
+            headers: {
+                Authorization:  `Bearer ${token}`
+            }
+         }
+    );
+
+    return response.data;
+
+
+
+};//getProfile
 
