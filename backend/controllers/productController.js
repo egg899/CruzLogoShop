@@ -8,7 +8,11 @@ export const getProducts = async(req, res) => {
         res.json(products);
     }
     catch(error) {
-        error: "Error al obtener products";
+           console.log(error);
+
+        res.status(500).json({
+            error: "Error al obtener products"
+        });
     }
 
 
